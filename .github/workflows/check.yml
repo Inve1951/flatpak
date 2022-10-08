@@ -8,8 +8,8 @@ on:
 
 jobs:
   check-alt2:
-    name: Build with gcc and test (older)
-    runs-on: ubuntu-18.04
+    name: Build with gcc and test (old-ish)
+    runs-on: ubuntu-20.04
     steps:
       - name: Install Dependencies
         run: |
