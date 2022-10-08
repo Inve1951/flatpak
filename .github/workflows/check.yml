@@ -42,7 +42,9 @@ jobs:
         run: |
           mkdir _build
           pushd _build
-          ../configure  --enable-internal-checks --enable-asan --disable-introspection --without-curl
+          ../configure \
+            --enable-asan --disable-introspection --without-curl \
+            --prefix=/usr --sysconfdir=/etc --enable-static
           popd
         env:
           CFLAGS: -O2 -Wp,-D_FORTIFY_SOURCE=2
@@ -50,15 +52,17 @@ jobs:
       - name: Build flatpak
         run: make -C _build -j $(getconf _NPROCESSORS_ONLN)
 
-      - run: ls -lX /home/runner/work/flatpak/flatpak/_build
-      - run: ls -lX /home/runner/work/flatpak/flatpak/_build/app
-      - run: ls -lX /home/runner/work/flatpak/flatpak/_build/common
+      - name: make install
+        run: make DESTDIR=/home/runner/work/flatpak/flatpak/packaged install
 
-      - name: upload exe
+      - run: ls -lX /home/runner/work/flatpak/flatpak/packaged
+      - run: ls -lX /home/runner/work/flatpak/flatpak/_build
+
+      - name: upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: exe
-          path: /home/runner/work/flatpak/flatpak/_build/flatpak
+          #name: exe
+          path: /home/runner/work/flatpak/flatpak/packaged
           if-no-files-found: error
           retention-days: 90
 
