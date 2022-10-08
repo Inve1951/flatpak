@@ -44,7 +44,13 @@ jobs:
           pushd _build
           ../configure \
             --enable-asan --disable-introspection --without-curl \
-            --prefix=/usr --sysconfdir=/etc --enable-static
+            --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=\${prefix}/lib/x86_64-linux-gnu --runstatedir=/run \
+            --with-run-media-dir=/media --with-dbus-config-dir=/usr/share/dbus-1/system.d --with-systemdsystemunitdir=/lib/systemd/system \
+            --with-privileged-group=sudo --with-system-helper-user=_flatpak \
+            --with-system-bubblewrap=bwrap --with-system-dbus-proxy=xdg-dbus-proxy \
+            --disable-auto-sideloading --disable-selinux-module --disable-gtk-doc \
+            --enable-docbook-docs --enable-documentation --enable-gdm-env-file
+          #--enable-static --enable-installed-tests
           popd
         env:
           CFLAGS: -O2 -Wp,-D_FORTIFY_SOURCE=2
