@@ -1,4 +1,4 @@
-name: STRIPPED Flatpak CI + QD CD
+name: Stripped Flatpak CI + QD CD
 
 on:
   push:
@@ -62,7 +62,8 @@ jobs:
       - continue-on-error: true
         run: |
           ls -lX /home/runner/work/flatpak/flatpak/_build
-          ls -lX /home/runner/work/flatpak/flatpak/_build/bin
+          ls -lX /home/runner/work/flatpak/flatpak/_build/app
+          ls -lX /home/runner/work/flatpak/flatpak/_build/common
 
       - name: Run tests
         run: make -C _build check -j $(getconf _NPROCESSORS_ONLN)
