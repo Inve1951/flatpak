@@ -47,10 +47,10 @@ jobs:
             --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=\${prefix}/lib/x86_64-linux-gnu --runstatedir=/run \
             --with-run-media-dir=/media --with-dbus-config-dir=/usr/share/dbus-1/system.d --with-systemdsystemunitdir=/lib/systemd/system \
             --with-privileged-group=sudo --with-system-helper-user=_flatpak \
-            --with-system-bubblewrap=bwrap --with-system-dbus-proxy=xdg-dbus-proxy \
+            --with-system-dbus-proxy=xdg-dbus-proxy \
             --disable-auto-sideloading --disable-selinux-module --disable-gtk-doc \
             --enable-docbook-docs --enable-documentation --enable-gdm-env-file
-          #--enable-static --enable-installed-tests
+          #--enable-static --enable-installed-tests --with-system-bubblewrap=bwrap
           popd
         env:
           CFLAGS: -O2 -Wp,-D_FORTIFY_SOURCE=2
