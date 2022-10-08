@@ -60,14 +60,14 @@ jobs:
         run: make -C _build -j $(getconf _NPROCESSORS_ONLN)
 
       - run: ls -lX /home/runner/work/flatpak/flatpak/_build
-      - run: ls -lX /home/runner/work/flatpak/flatpak/_build/app
-      - run: ls -lX /home/runner/work/flatpak/flatpak/_build/common
+      #- run: ls -lX /home/runner/work/flatpak/flatpak/_build/app
+      #- run: ls -lX /home/runner/work/flatpak/flatpak/_build/common
       
       - name: upload exe
         uses: actions/upload-artifact@v3
         with:
           name: exe
-          path: /home/runner/work/flatpak/flatpak/_build/app/flatpak
+          path: /home/runner/work/flatpak/flatpak/_build/flatpak
           if-no-files-found: error
           retention-days: 90
 
