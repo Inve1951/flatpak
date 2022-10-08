@@ -49,8 +49,8 @@ jobs:
             --with-privileged-group=sudo --with-system-helper-user=_flatpak \
             --with-system-dbus-proxy=xdg-dbus-proxy \
             --disable-auto-sideloading --disable-selinux-module --disable-gtk-doc \
-            --enable-docbook-docs --enable-documentation --enable-gdm-env-file
-          #--enable-static --enable-installed-tests --with-system-bubblewrap=bwrap
+            --enable-documentation --enable-gdm-env-file
+          #--enable-static --enable-installed-tests --with-system-bubblewrap=bwrap --enable-docbook-docs
           popd
         env:
           CFLAGS: -O2 -Wp,-D_FORTIFY_SOURCE=2
